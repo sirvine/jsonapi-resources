@@ -281,6 +281,7 @@ module JSONAPI
               # Since we do not yet support polymorphic associations we will raise an error if the type does not match the
               # association's type.
               # ToDo: Support Polymorphic associations
+              Rails.logger.debug "links_object (has_one): #{links_object}"
               if links_object[:type] && (links_object[:type].to_s != association.type.to_s)
                 raise JSONAPI::Exceptions::TypeMismatch.new(links_object[:type])
               end
@@ -309,6 +310,7 @@ module JSONAPI
               if links_object.length == 0
                 checked_has_many_associations[param] = []
               else
+                Rails.logger.debug "links_object (has_many): #{links_object}"
                 if links_object.length > 1 || !links_object.has_key?(format_key(association.type))
                   raise JSONAPI::Exceptions::TypeMismatch.new(links_object[:type])
                 end
