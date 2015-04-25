@@ -282,6 +282,7 @@ module JSONAPI
               # association's type.
               # ToDo: Support Polymorphic associations
               if links_object[:type] && (unformat_key(links_object[:type]).to_s != association.type.to_s)
+                Rails.logger.debug "MISMATCH 000001"
                 raise JSONAPI::Exceptions::TypeMismatch.new(links_object[:type])
               end
 
@@ -310,6 +311,7 @@ module JSONAPI
                 checked_has_many_associations[param] = []
               else
                 if links_object.length > 1 || !links_object.has_key?(association.type.to_s)
+                  Rails.logger.debug "MISMATCH 000002"
                   raise JSONAPI::Exceptions::TypeMismatch.new(links_object[:type])
                 end
 
