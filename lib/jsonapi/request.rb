@@ -314,6 +314,8 @@ module JSONAPI
                 checked_has_many_associations[param] = []
               else
                 Rails.logger.info "links_object (has_many): #{links_object}"
+                Rails.logger.info "format_key(association.type): #{format_key(association.type)}"
+                Rails.logger.info "links_object.has_key?(format_key(association.type)): #{links_object.has_key?(format_key(association.type))}"
                 if links_object.length > 1 || !links_object.has_key?(format_key(association.type))
                   raise JSONAPI::Exceptions::TypeMismatch.new(links_object[:type])
                 end
