@@ -282,6 +282,9 @@ module JSONAPI
               # association's type.
               # ToDo: Support Polymorphic associations
               Rails.logger.info "links_object (has_one): #{links_object}"
+              Rails.logger.info "links_object[:type].to_s: #{links_object[:type].to_s}"
+              Rails.logger.info "association.type.to_s: #{association.type.to_s}"
+              Rails.logger.info "links_object[:type].to_s != association.type.to_s: #{links_object[:type].to_s != association.type.to_s}"
               if links_object[:type] && (links_object[:type].to_s != association.type.to_s)
                 raise JSONAPI::Exceptions::TypeMismatch.new(links_object[:type])
               end
